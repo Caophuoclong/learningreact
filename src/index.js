@@ -151,11 +151,11 @@ const courses = [
 ]
 
 // Course Item
-function Course({ image, title, description, students_count }) {
+function Course({ image, title, description, students_count, onClick }) {
     return (
         <div className="course-item">
             <img className="course-image" src={image} alt={title} />
-            <h2 className="course-title" style={{ cursor: "pointer" }} onClick={() => alert(title)}>{title}</h2>
+            <h2 className="course-title" style={{ cursor: "pointer" }} onClick={() => onClick(title)}>{title}</h2>
             <p className="course-description">{description}</p>
             <small className="course-students-count">{students_count}</small>
 
@@ -177,6 +177,9 @@ function PostItem({ title, image, description, published }) {
 }
 
 function App() {
+    const handleClick = (title) => {
+        console.log(title);
+    }
     return (
         <div className="app">
             <div className="posts-list">
@@ -185,7 +188,7 @@ function App() {
                 <PostItem title="phuoclong" image="..." description="phuoclong1" published="Hom Qua" />
             </div>
             <div className="courses-list">
-                {courses.map((course, index) => <Course key={index} title={course.title} image={course.thumbnail_cdn} description={course.description} students_count={course.students_count} />)}
+                {courses.map((course, index) => <Course key={index} onClick={handleClick} title={course.title} image={course.thumbnail_cdn} description={course.description} students_count={course.students_count} />)}
             </div>
         </div>
     )
