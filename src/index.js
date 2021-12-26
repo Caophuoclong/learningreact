@@ -176,12 +176,47 @@ function PostItem({ title, image, description, published }) {
     )
 }
 
+// Form
+const Form = {
+    Input() {
+        return <input type="text" />
+    },
+    Checkbox() {
+        return <input type="checkbox" />
+    }
+
+}
+
+function Button({ title, href, onClick }) {
+    let Component = "button";
+    const props = {};
+    if (href) {
+        Component = "a";
+        props.href = href
+    }
+    if (onClick) {
+        props.onClick = onClick;
+    }
+    return (
+        <Component {...props}>{title}</Component>
+    )
+
+}
+
+
 function App() {
     const handleClick = (title) => {
         console.log(title);
     }
+    const type = "Checkbox"
+    const Component = Form[type];
     return (
         <div className="app">
+            <Component />
+            <Button
+                title="Click me!"
+                // href="http://localhost:5500" 
+                onClick={handleClick} />
             <div className="posts-list">
                 <PostItem title="phuoclong" image="..." description="phuoclong1" published="Hom Qua" />
                 <PostItem title="phuoclong" image="..." description="phuoclong1" published="Hom Qua" />
@@ -190,6 +225,7 @@ function App() {
             <div className="courses-list">
                 {courses.map((course, index) => <Course key={index} onClick={handleClick} title={course.title} image={course.thumbnail_cdn} description={course.description} students_count={course.students_count} />)}
             </div>
+
         </div>
     )
 }
