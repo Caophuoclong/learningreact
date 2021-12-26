@@ -12,14 +12,22 @@ const courses = [
     }
 ]
 
-const ul = <React.Fragment>
-    <ul>
-        {
-            courses.map((value, index) => <li key={index}>
-                {value.name}
-            </li>)
-        }
-    </ul>
-</React.Fragment>
+function PostItem() {
+    return (
+        <div className="post-item">
+            <img src="..." alt="..." />
+            <h2 className="post-title">Long dep trai</h2>
+            <p className="post-description">Long dep trai qua troi qua dat</p>
+            <p className="post-publisher">5 ngay truoc</p>
+        </div>
+    )
+}
 
-ReactDOM.render(ul, root);
+const app = (
+    <div className="posts-list">
+        <PostItem />
+        <PostItem />
+    </div>
+)
+
+ReactDOM.render(app, root);
